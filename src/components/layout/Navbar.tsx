@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 
 type NavTheme = "dark" | "light";
@@ -9,6 +10,11 @@ export default function Navbar() {
   const [menuOpen,     setMenuOpen]     = useState(false);
   const [menuClosing,  setMenuClosing]  = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const pathname  = usePathname();
+
+  // Anchor links (#section) stay as-is on the homepage; get /#section prefix everywhere else
+  const r = (href: string) =>
+    href.startsWith("#") ? (pathname === "/" ? href : `/${href}`) : href;
 
   /* ── scroll / theme detection ── */
   const update = useCallback(() => {
@@ -102,7 +108,7 @@ export default function Navbar() {
           <div className="h-[72px] flex items-center justify-between gap-8">
 
             {/* Logo */}
-            <a href="#" className="shrink-0">
+            <a href="/" className="shrink-0">
               <img
                 src="https://d1yei2z3i6k35z.cloudfront.net/9533860/671a9c9265e23_Logo_Nawar_2.png"
                 alt="Nawar"
@@ -115,7 +121,7 @@ export default function Navbar() {
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={r(link.href)}
                   className="px-4 py-2 text-[15px] font-medium text-white/88 hover:text-white/50 transition-colors duration-200"
                 >
                   {link.label}
@@ -132,7 +138,7 @@ export default function Navbar() {
                 Contacto
               </a>
               <a
-                href="#lista-espera"
+                href={r("#lista-espera")}
                 className="inline-flex items-center gap-2 px-6 py-2.5 text-[14px] font-semibold rounded-xl bg-[#4da3ff] text-white hover:bg-[#69baff] transition-all duration-200 shadow-[0_2px_16px_rgba(77,163,255,0.35)]"
               >
                 Lista de espera
@@ -145,7 +151,7 @@ export default function Navbar() {
             {/* Mobile: Únete CTA + burger */}
             <div className="md:hidden flex items-center gap-2">
               <a
-                href="#lista-espera"
+                href={r("#lista-espera")}
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#4da3ff] text-white text-[14px] font-semibold hover:bg-[#5eb4ff] transition-all duration-200"
               >
                 Únete
@@ -194,7 +200,7 @@ export default function Navbar() {
               {NAV_LINKS.map((link, i) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={r(link.href)}
                   onClick={handleLink}
                   className="block py-3.5 text-[21px] font-semibold text-white hover:text-white/80 text-center transition-colors duration-200"
                   style={{
@@ -224,7 +230,7 @@ export default function Navbar() {
                 Conectarse
               </a>
               <a
-                href="#lista-espera"
+                href={r("#lista-espera")}
                 onClick={handleLink}
                 className="flex w-full items-center justify-center gap-2.5 px-6 py-4 text-[16px] font-semibold rounded-xl bg-[#4da3ff] text-white hover:bg-[#5eb4ff] transition-all duration-200 shadow-[0_4px_20px_rgba(77,163,255,0.30)]"
               >
