@@ -14,13 +14,27 @@ export default function Navbar() {
   /* ── scroll / theme detection ── */
   const update = useCallback(() => {
     setScrolled(window.scrollY > 40);
-    const el = document.elementFromPoint(window.innerWidth / 2, 72);
-    let node: Element | null = el;
-    while (node) {
-      const t = node.getAttribute("data-navbar");
-      if (t === "light" || t === "dark") { setTheme(t); break; }
-      node = node.parentElement;
-    }
+
+    const readTheme = (el: Element | null): NavTheme | null => {
+      let node: Element | null = el;
+      while (node) {
+        const t = node.getAttribute("data-navbar");
+        if (t === "light" || t === "dark") return t as NavTheme;
+        node = node.parentElement;
+      }
+      return null;
+    };
+
+    // Enter light section fast: sample at the bottom edge of the navbar (y=72)
+    const themeBottom = readTheme(document.elementFromPoint(window.innerWidth / 2, 72));
+    // Leave light section slow: only go dark once the very top of the viewport is dark (y=4)
+    const themeTop    = readTheme(document.elementFromPoint(window.innerWidth / 2, 4));
+
+    setTheme(prev => {
+      if (themeBottom === "light") return "light"; // light section entering — show bg immediately
+      if (themeTop    === "dark")  return "dark";  // fully past light section — start fading
+      return prev;                                 // in-between: keep current state
+    });
   }, []);
 
   useEffect(() => {
@@ -75,8 +89,8 @@ export default function Navbar() {
       <header
         className="fixed top-0 inset-x-0 z-50"
         style={{
-          backgroundColor: (scrolled && isLight) ? '#1D0084' : 'transparent',
-          transition: 'background-color 0.3s ease',
+          backgroundColor: (scrolled && isLight) ? 'rgba(29,0,132,1)' : 'rgba(29,0,132,0)',
+          transition: 'background-color 0.6s ease',
         }}
       >
         <div className="max-w-6xl mx-auto px-6">
@@ -87,7 +101,7 @@ export default function Navbar() {
               <img
                 src="https://d1yei2z3i6k35z.cloudfront.net/9533860/671a9c9265e23_Logo_Nawar_2.png"
                 alt="Nawar"
-                className="h-9 w-auto object-contain"
+                className="h-10 md:h-9 w-auto object-contain"
               />
             </a>
 

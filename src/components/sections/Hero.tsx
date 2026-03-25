@@ -35,13 +35,24 @@ export default function Hero() {
               Academia de neerlandés · Para hispanohablantes
             </div>
 
-            <h1 className="display text-white">
+            {/* Mobile title */}
+            <h1 className="md:hidden display text-white" style={{ fontSize: 'clamp(30px, 8vw, 44px)' }}>
+              Da el siguiente paso en tu camino del{" "}
+              <span className="text-[#4da3ff]">neerlandés</span>
+            </h1>
+            {/* Desktop title */}
+            <h1 className="hidden md:block display text-white">
               Aprende{" "}
               <span className="text-[#4da3ff]">neerlandés</span>
               <br />desde el español.
             </h1>
 
-            <p className="text-[19px] leading-[1.65] text-white/55 max-w-[520px]">
+            {/* Mobile subtitle */}
+            <p className="md:hidden text-[17px] leading-[1.65] text-white max-w-[520px]">
+              La migración a Países Bajos es una realidad. Súmate a los miles de hispanohablantes que ya dominan el neerlandés y abren nuevas oportunidades.
+            </p>
+            {/* Desktop subtitle */}
+            <p className="hidden md:block text-[19px] leading-[1.65] text-white/55 max-w-[520px]">
               El único método diseñado para hispanohablantes. Clases en vivo, comunidad activa y una progresión clara — desde A1 hasta conversación fluida.
             </p>
 
@@ -95,7 +106,7 @@ export default function Hero() {
           </div>
 
           {/* Right — lesson card */}
-          <div className="mt-4 max-w-sm mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:shrink-0">
+          <div className="-mt-2 max-w-sm mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:shrink-0">
             <div className="relative">
               <div
                 className="glass rounded-[24px] p-6 space-y-5"
