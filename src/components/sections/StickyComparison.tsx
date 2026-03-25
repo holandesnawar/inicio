@@ -59,7 +59,8 @@ export default function StickyComparison() {
           {/* LEFT — STICKY */}
           <div className="lg:sticky lg:top-[72px] pt-24 pb-24 pr-0 lg:pr-16">
             <Reveal className="space-y-6">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1D0084]/8 border border-[#1D0084]/14 text-[#1D0084] eyebrow">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dde8f8] text-[#1D0084] eyebrow">
+                <svg className="w-3 h-3 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5 5.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 Nawar vs academias clásicas
               </span>
 

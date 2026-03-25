@@ -11,7 +11,8 @@ export default function Courses() {
       <div className="relative max-w-6xl mx-auto px-6">
 
         <Reveal className="text-center max-w-2xl mx-auto mb-20 space-y-5">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1D0084]/8 border border-[#1D0084]/14 text-[#1D0084] eyebrow">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#dde8f8] text-[#1D0084] eyebrow">
+            <svg className="w-3 h-3 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5 5.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Cursos disponibles
           </span>
           <h2 className="title-dark">

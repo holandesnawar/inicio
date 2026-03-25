@@ -1,19 +1,22 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { NAV_LINKS } from "@/lib/constants";
 
 type NavTheme = "dark" | "light";
 
 export default function Navbar() {
-  const [scrolled,     setScrolled]     = useState(false);
-  const [theme,        setTheme]        = useState<NavTheme>("dark");
   const [menuOpen,     setMenuOpen]     = useState(false);
   const [menuClosing,  setMenuClosing]  = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   /* ── scroll / theme detection ── */
   const update = useCallback(() => {
-    setScrolled(window.scrollY > 40);
+    const header = headerRef.current;
+    if (!header) return;
+
+    const sy = window.scrollY;
+    const vh = window.innerHeight;
 
     const readTheme = (el: Element | null): NavTheme | null => {
       let node: Element | null = el;
@@ -25,16 +28,27 @@ export default function Navbar() {
       return null;
     };
 
-    // Enter light section fast: sample at the bottom edge of the navbar (y=72)
+    // Enter light: detect at navbar bottom (y=72) — react fast
     const themeBottom = readTheme(document.elementFromPoint(window.innerWidth / 2, 72));
-    // Leave light section slow: only go dark once the very top of the viewport is dark (y=4)
+    // Leave light: only fade out once very top of viewport is dark (y=4) — hysteresis
     const themeTop    = readTheme(document.elementFromPoint(window.innerWidth / 2, 4));
 
-    setTheme(prev => {
-      if (themeBottom === "light") return "light"; // light section entering — show bg immediately
-      if (themeTop    === "dark")  return "dark";  // fully past light section — start fading
-      return prev;                                 // in-between: keep current state
-    });
+    if (themeBottom === "light") {
+      // Entering a light section — smooth fade in
+      header.style.transition = "background-color 0.55s ease";
+      header.style.backgroundColor = "rgba(29,0,132,1)";
+    } else if (themeTop === "dark" && sy > vh * 0.9) {
+      // Fully inside a post-hero dark section — smooth fade out
+      header.style.transition = "background-color 0.55s ease";
+      header.style.backgroundColor = "rgba(29,0,132,0)";
+    } else {
+      // Inside hero: gradient tied to scroll — no CSS transition (scroll IS the animation)
+      const fadeStart = vh * 0.38;
+      const fadeEnd   = vh * 0.84;
+      const opacity   = Math.min(1, Math.max(0, (sy - fadeStart) / (fadeEnd - fadeStart)));
+      header.style.transition = "none";
+      header.style.backgroundColor = `rgba(29,0,132,${opacity.toFixed(3)})`;
+    }
   }, []);
 
   useEffect(() => {
@@ -72,13 +86,6 @@ export default function Navbar() {
 
   const handleLink = () => closeMenu();
 
-  /* ── navbar bg ──
-     Dark section  → transparent (fuses with the dark bg)
-     Light section → nav-dark class (original #1D0084 color appears)
-  ── */
-  const isLight = theme === "light";
-  const bgClass = (scrolled && isLight) ? "nav-dark" : "bg-transparent";
-
   const isMenuVisible = menuOpen || menuClosing;
 
   return (
@@ -87,11 +94,9 @@ export default function Navbar() {
           HEADER
       ──────────────────────────────────────── */}
       <header
+        ref={headerRef}
         className="fixed top-0 inset-x-0 z-50"
-        style={{
-          backgroundColor: (scrolled && isLight) ? 'rgba(29,0,132,1)' : 'rgba(29,0,132,0)',
-          transition: 'background-color 0.6s ease',
-        }}
+        style={{ backgroundColor: "rgba(29,0,132,0)" }}
       >
         <div className="max-w-6xl mx-auto px-6">
           <div className="h-[72px] flex items-center justify-between gap-8">

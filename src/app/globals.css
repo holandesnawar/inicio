@@ -22,7 +22,10 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: #1D0084; /* overscroll / pull-to-refresh safe area */
+}
 
 body {
   font-family: var(--font-sans);

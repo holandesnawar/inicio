@@ -19,7 +19,8 @@ export default function CallToAction() {
       <div className="relative max-w-3xl mx-auto px-6 text-center">
         <Reveal className="space-y-8">
 
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/14 text-white/60 eyebrow">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#025dc7] text-[#e0f2ff] eyebrow">
+            <svg className="w-3 h-3 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5 5.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             Empieza hoy
           </span>
 

@@ -36,12 +36,12 @@ export default function Hero() {
             </div>
 
             {/* Mobile title */}
-            <h1 className="md:hidden display text-white" style={{ fontSize: 'clamp(30px, 8vw, 44px)' }}>
+            <h1 className="md:hidden display text-white" style={{ fontSize: 'clamp(30px, 8vw, 44px)', lineHeight: '1.18' }}>
               Da el siguiente paso en tu camino del{" "}
               <span className="text-[#4da3ff]">neerlandés</span>
             </h1>
             {/* Desktop title */}
-            <h1 className="hidden md:block display text-white">
+            <h1 className="hidden md:block display text-white" style={{ lineHeight: '1.18' }}>
               Aprende{" "}
               <span className="text-[#4da3ff]">neerlandés</span>
               <br />desde el español.

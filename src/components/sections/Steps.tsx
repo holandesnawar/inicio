@@ -140,7 +140,8 @@ export default function Steps() {
       ══════════════════════════════════ */}
       <div className="lg:hidden relative z-10 max-w-xl mx-auto px-6 py-28">
         <div className="mb-16 space-y-4">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/8 border border-white/14 text-white/55 eyebrow">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#025dc7] text-[#e0f2ff] eyebrow">
+            <svg className="w-3 h-3 shrink-0" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5l2.5 2.5 5.5-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
             El proceso
           </span>
           <h2 className="title text-white">
