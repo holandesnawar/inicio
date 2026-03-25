@@ -5,6 +5,7 @@ export const NAV_LINKS = [
   { label: "Cursos",     href: "#cursos" },
   { label: "Academia",   href: "#academia" },
   { label: "Opiniones",  href: "#opiniones" },
+  { label: "Blog",       href: "/blog" },
 ];
 
 export const STATS = [
