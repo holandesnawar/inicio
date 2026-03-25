@@ -7,9 +7,9 @@ const BASE =
   "inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 cursor-pointer whitespace-nowrap select-none";
 
 const VARIANTS: Record<Variant, string> = {
-  /* Orange — main CTA, used once */
+  /* Light blue — main CTA */
   primary:
-    "bg-[#F58220] text-white hover:bg-[#eb7005] shadow-[0_2px_14px_rgba(245,130,32,0.38)] hover:shadow-[0_4px_22px_rgba(245,130,32,0.52)] hover:scale-[1.02] active:scale-[.98] focus-visible:ring-[#F58220]",
+    "bg-[#4da3ff] text-[#0a1a4a] hover:bg-[#3391f0] hover:scale-[1.02] active:scale-[.98] focus-visible:ring-[#4da3ff]",
 
   /* White filled — CTA on dark sections */
   white:
