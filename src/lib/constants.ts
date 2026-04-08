@@ -1,10 +1,10 @@
 export const SITE_NAME = "Nawar";
 
 export const NAV_LINKS = [
-  { label: "Inicio",      href: "/" },
-  { label: "Formaciones", href: "#cursos" },
-  { label: "Opiniones",   href: "#opiniones" },
-  { label: "Blog",        href: "/blog" },
+  { label: "Inicio",         href: "/" },
+  { label: "Nuestra visión", href: "#academia" },
+  { label: "Blog",           href: "/blog" },
+  { label: "Contacto",       href: "/contacto" },
 ];
 
 export const STATS = [

@@ -14,93 +14,111 @@ const SOCIAL = [
   },
 ];
 
+const BENEFITS = [
+  "Acceso anticipado a nuevas plazas",
+  "Material exclusivo de bienvenida",
+  "Descuento especial al apuntarte",
+];
+
 export default function Footer() {
-  const [email, setEmail]     = useState("");
-  const [sent,  setSent]      = useState(false);
-  const [error, setError]     = useState(false);
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.includes("@")) { setError(true); return; }
+    if (!email.includes("@")) {
+      setError(true);
+      return;
+    }
     setError(false);
     setSent(true);
     setEmail("");
   };
 
   return (
-    <footer data-navbar="dark" className="bg-[#1D0084] border-t border-white/8">
+    <footer data-navbar="dark" className="bg-[#1D0084]">
 
-      {/* ── CTA block ── */}
-      <div id="lista-espera" className="max-w-6xl mx-auto px-6 pt-16">
-        <div className="rounded-3xl bg-[#F0F5FF] px-8 py-14 md:px-14">
-          <div className="max-w-sm">
-
+      {/* ── Email signup block ── */}
+      <div id="lista-espera" className="max-w-6xl mx-auto px-6 pt-16 pb-8">
+        <div className="rounded-3xl bg-gradient-to-br from-[#0b6df0]/15 via-[#1D0084]/8 to-transparent border border-white/10 px-8 py-12 md:px-14 md:py-16">
+          <div className="max-w-xl">
             <h3
-              className="text-[28px] font-bold text-[#1D0084] leading-tight mb-3"
+              className="text-[26px] md:text-[32px] font-bold text-white leading-tight mb-4"
               style={{ fontFamily: "var(--font-poppins), system-ui, sans-serif" }}
             >
-              Sé el primero en saber cuándo abrimos plazas
+              Sé el primero en apuntarte
             </h3>
-
-            <p className="text-[15px] text-[#374151] leading-relaxed mb-7">
-              Apúntate y te avisamos antes que nadie cuando haya nuevas incorporaciones.
+            <p className="text-[16px] text-white/55 leading-relaxed mb-8">
+              Únete a la lista de espera y te avisamos cuando abramos nuevas plazas. Sin compromiso.
             </p>
 
+            {/* Benefits */}
+            <div className="flex flex-col gap-3 mb-8">
+              {BENEFITS.map((benefit, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <span className="w-5 h-5 rounded-full bg-[#4da3ff]/20 border border-[#4da3ff]/30 flex items-center justify-center shrink-0">
+                    <svg className="w-3 h-3 text-[#4da3ff]" fill="none" stroke="currentColor" strokeWidth={3} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                  <span className="text-[15px] text-white/75">{benefit}</span>
+                </div>
+              ))}
+            </div>
+
             {sent ? (
-              <div className="flex items-center gap-2.5 px-5 py-4 rounded-[10px] bg-[#1D0084]/8 text-[#1D0084] font-medium text-[15px]">
-                <svg className="w-4 h-4 text-[#025dc7] shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+              <div className="flex items-center gap-3 px-6 py-4 rounded-2xl bg-[#4da3ff]/15 border border-[#4da3ff]/25 text-white">
+                <svg className="w-5 h-5 text-[#4da3ff] shrink-0" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                ¡Apuntado! Te avisaremos pronto.
+                <span className="text-[15px] font-medium">¡Apuntado! Te avisaremos pronto.</span>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="email"
                   value={email}
-                  onChange={e => { setEmail(e.target.value); setError(false); }}
-                  placeholder="Introduce tu mail"
-                  className={`w-full px-4 py-3.5 rounded-[10px] bg-white text-[#1D0084] placeholder:text-[#9CA3AF] text-[15px] outline-none transition-colors ${
-                    error ? "border border-red-400/60" : "border border-[#DDE6F5] focus:border-[#025dc7]/40"
+                  onChange={(e) => { setEmail(e.target.value); setError(false); }}
+                  placeholder="Tu email"
+                  className={`flex-1 px-5 py-4 rounded-xl bg-white/8 border text-white placeholder:text-white/40 text-[15px] outline-none transition-all ${
+                    error ? "border-red-400/60" : "border-white/14 focus:border-[#4da3ff]/50"
                   }`}
                 />
                 <button
                   type="submit"
-                  className="w-full px-4 py-3.5 rounded-[10px] bg-[#1D0084] text-white text-[15px] font-semibold hover:bg-[#025dc7] transition-colors duration-200"
+                  className="px-7 py-4 rounded-xl bg-[#4da3ff] text-[#0a1a4a] text-[15px] font-semibold hover:bg-[#5eb4ff] transition-all duration-200 shadow-[0_4px_20px_rgba(77,163,255,0.25)] whitespace-nowrap"
                 >
-                  Lista de espera
+                  Apuntarme
                 </button>
-
-                {error && (
-                  <p className="text-[13px] text-red-500/70">Introduce un email válido.</p>
-                )}
-
-                <p className="text-[12px] text-[#6B7280] leading-relaxed">
-                  Al hacer clic, confirmo que he leído y aceptado la{" "}
-                  <a href="#" className="underline hover:text-[#1D0084] transition-colors duration-200">
-                    política de privacidad
-                  </a>
-                  .
-                </p>
               </form>
             )}
 
+            {error && (
+              <p className="text-[13px] text-red-400/80 mt-3">Introduce un email válido.</p>
+            )}
+
+            <p className="text-[12px] text-white/35 leading-relaxed mt-5">
+              Al apuntarte, aceptas nuestra{" "}
+              <a href="#" className="underline hover:text-white/60 transition-colors">política de privacidad</a>.
+            </p>
           </div>
         </div>
       </div>
 
       {/* ── Main footer ── */}
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-white/8">
+      <div className="max-w-6xl mx-auto px-6 py-12 border-t border-white/8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
-          <div className="space-y-5">
+          {/* Brand */}
+          <div className="md:col-span-1">
             <img
               src="https://d1yei2z3i6k35z.cloudfront.net/9533860/671a9c9265e23_Logo_Nawar_2.png"
               alt="Nawar"
-              className="h-7 w-auto object-contain"
+              className="h-7 w-auto object-contain mb-4"
             />
-            <p className="text-white/38 text-sm leading-relaxed max-w-xs">
-              Academia online de neerlandés para hispanohablantes. Aprende de verdad, con método y comunidad.
+            <p className="text-white/38 text-sm leading-relaxed mb-5">
+              Academia de neerlandés para hispanohablantes.
             </p>
             <div className="flex gap-2">
               {SOCIAL.map((s) => (
@@ -116,12 +134,13 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Navigation */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-5">Navegación</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-4">Navegación</p>
             <ul className="space-y-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm text-white/85 hover:text-white transition-colors duration-200">
+                  <a href={link.href} className="text-sm text-white/70 hover:text-white transition-colors duration-200">
                     {link.label}
                   </a>
                 </li>
@@ -129,22 +148,35 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Academia */}
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-5">Contacto</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-4">Academia</p>
             <ul className="space-y-3 text-sm">
-              <li><a href="mailto:hola@holandesnawar.com" className="text-white/85 hover:text-white transition-colors duration-200">hola@holandesnawar.com</a></li>
-              <li className="text-white/22">Clases 100% online · En directo</li>
-              <li><a href="https://www.holandesnawar.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/40 hover:text-white/70 transition-colors duration-200">holandesnawar.com ↗</a></li>
+              <li><a href="#" className="text-white/70 hover:text-white transition-colors duration-200">Acceso a alumnos</a></li>
+              <li><a href="#" className="text-white/70 hover:text-white transition-colors duration-200">Metodología</a></li>
+              <li><a href="#" className="text-white/70 hover:text-white transition-colors duration-200">Preguntas frecuentes</a></li>
             </ul>
           </div>
+
+          {/* Contact */}
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/28 mb-4">Contacto</p>
+            <ul className="space-y-3 text-sm">
+              <li><a href="mailto:hola@holandesnawar.com" className="text-white/70 hover:text-white transition-colors duration-200">hola@holandesnawar.com</a></li>
+              <li className="text-white/35">Clases 100% online · En directo</li>
+              <li><a href="https://www.holandesnawar.com" target="_blank" rel="noopener noreferrer" className="text-[13px] text-white/40 hover:text-white/70 transition-colors duration-200">holandesnawar.com ↗</a></li>
+            </ul>
+          </div>
+
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/18">
+        {/* Bottom */}
+        <div className="pt-8 mt-8 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/25">
           <p>© {new Date().getFullYear()} Nawar. Todos los derechos reservados.</p>
           <div className="flex gap-5">
-            {["Privacidad", "Términos", "Cookies"].map((l) => (
-              <a key={l} href="#" className="hover:text-white/45 transition-colors duration-200">{l}</a>
-            ))}
+            <a href="#" className="hover:text-white/50 transition-colors duration-200">Privacidad</a>
+            <a href="#" className="hover:text-white/50 transition-colors duration-200">Términos</a>
+            <a href="#" className="hover:text-white/50 transition-colors duration-200">Cookies</a>
           </div>
         </div>
       </div>

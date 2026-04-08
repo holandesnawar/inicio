@@ -7,7 +7,6 @@ import PainPoints from "@/components/sections/PainPoints";
 import Features from "@/components/sections/Features";
 import Steps from "@/components/sections/Steps";
 import StickyComparison from "@/components/sections/StickyComparison";
-import Courses from "@/components/sections/Courses";
 import Testimonials from "@/components/sections/Testimonials";
 import About from "@/components/sections/About";
 import CallToAction from "@/components/sections/CallToAction";
@@ -25,7 +24,6 @@ export default function Home() {
         <Features />
         <Steps />
         <StickyComparison />
-        <Courses />
         <Testimonials />
         <About />
         <CallToAction />

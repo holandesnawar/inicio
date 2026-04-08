@@ -133,28 +133,28 @@ export default function Navbar() {
             <div className="hidden md:flex items-center gap-3">
               <a
                 href="#"
-                className="text-[14px] font-medium text-white/68 hover:text-white/40 transition-colors duration-200 px-3 py-2"
+                className="text-[14px] font-medium text-white/70 hover:text-white transition-colors duration-200 px-3 py-2"
               >
-                Contacto
+                Acceso a alumnos
               </a>
               <a
                 href={r("#lista-espera")}
                 className="inline-flex items-center gap-2 px-6 py-2.5 text-[14px] font-semibold rounded-xl bg-[#4da3ff] text-white hover:bg-[#69baff] transition-all duration-200 shadow-[0_2px_16px_rgba(77,163,255,0.35)]"
               >
-                Lista de espera
+                Apúntate
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
             </div>
 
-            {/* Mobile: Únete CTA + burger */}
+            {/* Mobile: Apúntate CTA + burger */}
             <div className="md:hidden flex items-center gap-2">
               <a
                 href={r("#lista-espera")}
                 className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-[#4da3ff] text-white text-[14px] font-semibold hover:bg-[#5eb4ff] transition-all duration-200"
               >
-                Únete
+                Apúntate
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -227,14 +227,14 @@ export default function Navbar() {
                 onClick={handleLink}
                 className="flex w-full items-center justify-center px-6 py-4 text-[15px] font-semibold rounded-xl bg-white/8 border border-white/16 text-white/80 hover:bg-white/12 hover:text-white transition-all duration-200"
               >
-                Conectarse
+                Acceso a alumnos
               </a>
               <a
                 href={r("#lista-espera")}
                 onClick={handleLink}
                 className="flex w-full items-center justify-center gap-2.5 px-6 py-4 text-[16px] font-semibold rounded-xl bg-[#4da3ff] text-white hover:bg-[#5eb4ff] transition-all duration-200 shadow-[0_4px_20px_rgba(77,163,255,0.30)]"
               >
-                Lista de espera
+                Apúntate
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
